@@ -4,6 +4,8 @@ sidebar_position: 2
 
 # Package Management
 
+## Overview
+
 - **Packages**
 Bianbu software packages follow the Debian package standards and are managed using `apt`.
 

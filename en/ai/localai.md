@@ -109,6 +109,9 @@ To use other LLM models with our accelerated backend, you can
 
 ### Add RISC-V Accelerated ASR Backend
 
+The project source code is located at `backend/cpp/spacemit-asr-cpp`.  
+Use the following commands to build the backend and restart `local-ai`:
+
 ```bash
 cd backend/cpp/spacemit-asr-cpp
 bash build.sh
@@ -117,7 +120,7 @@ cd ../../../
 ./local-ai --debug
 ```
 
-Test with:
+Test with the following commands:
 
 ```bash
 # Prepare audio file test.wav
@@ -129,6 +132,9 @@ curl -X POST http://localhost:8080/v1/audio/transcriptions \
 
 ### Add C++ TTS Backend
 
+The project source code is located at `backend/cpp/matcha-tts-cpp`.
+Use the following commands to build the backend and restart `local-ai`:
+
 ```bash
 cd backend/cpp/matcha-tts-cpp
 bash build.sh
@@ -137,7 +143,7 @@ cd ../../../
 ./local-ai --debug
 ```
 
-Test with:
+Test with the following commands:
 
 ```bash
 curl -X POST "http://localhost:8080/tts" \

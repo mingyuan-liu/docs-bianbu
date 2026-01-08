@@ -203,7 +203,7 @@ apt install xxx
 
 ## FAQ
 
-### Q1. 如何使用 binNMU（Binary Non-Maintainer Upload，二进制非维护者上传）？
+**Q1.** 如何使用 binNMU（Binary Non-Maintainer Upload，二进制非维护者上传）？
 
 前提条件：已经上传入库过一次源码包。
 

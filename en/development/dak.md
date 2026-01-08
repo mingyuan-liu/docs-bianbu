@@ -206,7 +206,7 @@ apt install xxx
 
 ## FAQ
 
-1. How to use binNMU (Binary Non-Maintainer Upload)?
+**Q1.** How to use binNMU (Binary Non-Maintainer Upload)?
 
 Prerequisites: A source package has already been uploaded and stored once.
 

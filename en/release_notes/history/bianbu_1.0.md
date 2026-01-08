@@ -4,14 +4,24 @@ sidebar_position: 1
 
 # Bianbu V1.0 Release Notes [End of Life]
 
-## Bianbu V1.0 End of Life Announcement
+## Bianbu V1.0 End-of-Life (EOL) Notice
 
-SpacemiT **Bianbu v1.0**, which was built on **Ubuntu 23.10**, is no longer supported or updated by the Ubuntu community. SpacemiT has now released **Bianbu v2.0** (currently at version v2.0.4), which is based on **Ubuntu 24.04** and includes deep optimizations for RISC-V. Please note that Bianbu V1.0 is no longer maintained and has reached its **End of Life (EOL)**.
+Bianbu V1.0 is built on **Ubuntu 23.10**. As the Ubuntu community has officially discontinued maintenance and security updates for Ubuntu 23.10, Bianbu V1.0 no longer has a sustainable upstream support foundation.
 
-**Bianbu V1.0 End of Life (EOL) Time: 2024/12/31**
+Based on **Ubuntu 24.04 LTS** and with **deep optimizations for the RISC-V architecture**, SpacemiT has released the next-generation operating system **Bianbu V2.x**. To align version planning and ensure system security and long-term maintainability, we hereby formally announce:
 
-Please refer to the document for the Bianbu v2.0 upgrade：
-[user_guide-->upgrade](https://bianbu.spacemit.com/en/user_guide/upgrade)
+**Bianbu V1.0 has entered End-of-Life (EOL) status.**
+
+### Lifecycle Support Information
+
+| Version        | End of Support Date | Extended Life-cycle Support (ELS) |
+|----------------|---------------------|-----------------------------------|
+| Bianbu 1.x.x   | 2024/12/31          | Not provided                      |
+
+### Migration Recommendation
+
+To continue receiving feature updates, security patches, and enhanced RISC-V platform support, **users are strongly encouraged to upgrade to the Bianbu V2.x series**.  
+For detailed upgrade instructions, please refer to: **[User Guide — System Upgrade](/en/user_guide/GNOME/upgrade.md)**.
 
 ## V1.0 release note
 
