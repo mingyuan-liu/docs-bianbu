@@ -8,8 +8,8 @@ Python 3 is preinstalled on the Bianbu OS. You are advised to use a correct pack
 
 In Bianbu OS, you can install python dependencies in two ways：
 
-* Install preconfigured system Python packages using apt。
-* Create a virtual environment and install the packages using the pip package manager。
+- Install preconfigured system Python packages using apt。
+- Create a virtual environment and install the packages using the pip package manager。
 
 ## Install Python packages using apt
 
@@ -54,7 +54,7 @@ hint: See PEP 668 for the detailed specification.
 
 Packages installed via pip must be installed into the Python virtual environment (venv). A virtual environment is a container where you can securely install third-party modules so that they don't interfere with your system Python environment。
 
-### Using pip in a virtual environment
+### Using `pip` in a virtual environment
 
 To use a virtual environment, create a container to store your Python environment. You can do this in a number of ways, depending on how you want to use Python. Let's take the virtualenv tool as an example.First install virtualenv on your system's python environment：
 
@@ -134,6 +134,15 @@ To leave the virtual environment, run the following command：
 ```shell
 (myenv) ➜  ~ deactivate
 ```
+
+### Python Version Support
+
+| Python Interpreter Version | Support Status |
+|:-------------------------------:|:------------------:|
+| Python 3.12                     | Long-Term Support  |
+| Python 3.13                     | Long-Term Support  |
+
+Users are strongly advised to use **Python 3.12 or later**. In general, it is recommended to follow the Python version provided by the operating system for optimal compatibility and stability.
 
 ### Use pyenv to manage Python versions
 
@@ -341,14 +350,157 @@ thonny
 
 By default, Thonny uses system Python. However, you can switch to using a Python virtual environment by clicking the Interpreter menu in the bottom-right corner of the Thonny window. You can choose a configured environment or use the Configure interpreter... Create a new virtual environment.
 
+## Using JupyterLab (with VS Code)
+
+### Introduction to JupyterLab
+
+**JupyterLab** is a web-based **interactive development environment (IDE)** primarily used for **data science, machine learning, scientific computing, and education**. It is the next-generation interface for **Jupyter Notebook**, offering enhanced functionality and a more flexible user interface.
+
+#### Key Features
+
+1. **Multi-Document Interface**
+   - Open multiple notebooks, terminals, text files, Markdown files, CSVs, images, and code editors simultaneously.
+   - Tabbed views and split layouts make it easy to organize complex workflows.
+
+2. **Interactive Computing**
+   - Supports multiple programming languages via Jupyter kernels (most commonly Python).
+   - Execute code cells interactively and view outputs such as charts, tables, and mathematical formulas.
+
+3. **Rich Visualization Support**
+   - Seamless integration with libraries such as **Matplotlib, Plotly, Bokeh, and Altair**.
+   - Supports interactive and real-time visualizations.
+
+4. **Extensible Architecture**
+   - Supports extensions to enhance functionality, including Git integration, code formatting, and debugging tools.
+
+5. **Built-in Terminal and File Management**
+   - Integrated Linux shell terminal.
+   - File browser for direct access to files on the server.
+
+#### Typical Use Cases
+
+- **Data exploration and visualization**: Rapid inspection and analysis of datasets.
+- **Machine learning development**: Model training, debugging, and visualization.
+- **Education and research**: Teaching and experimentation with LaTeX math support and interactive demos.
+- **Rapid prototyping**: Combine code, documentation, and visual results in a single workspace.
+
+### JupyterLab Installation
+
+- **Install system dependencies**
+
+   ```bash
+   sudo apt install python3-pip python3-venv libxrender1 libgl1 libglib2.0-0t64
+   ```
+
+- **Configure pip package sources**
+
+   ```bash
+   pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/
+   pip config set global.extra-index-url https://git.spacemit.com/api/v4/projects/33/packages/pypi/simple
+   ```
+
+- **Install JupyterLab**
+
+   ```bash
+   python3 -m venv ~/jupter-env
+   source ~/jupter-env/bin/activate
+   pip install pip -U
+   pip install ipykernel jupyterlab opencv-python matplotlib scipy
+   ```
+
+### Launching JupyterLab
+
+```bash
+source ~/jupter-env/bin/activate
+jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --notebook-dir=~/
+```
+
+Sample output as below
+
+![](./static/jupyter2.png)
+
+Copy and save the URL that looks like:
+
+```
+http://127.0.0.1:8888/lab?token=1e41eaf84a91a47b00d1c0c2ed3a43632c3999f79d36803c
+```
+
+> **Note:** The token value is generated dynamically. Always copy the URL printed in your own terminal.
+
+Open a new terminal and use the following command to find the board’s IP address:
+
+```bash
+ip addr
+```
+
+![](./static/ipaddr1.png)
+
+In this example, the board IP address is `10.0.91.183`. In your environment, it may be a different address such as `192.168.x.x`.
+
+Replace `127.0.0.1` in the copied URL with the board IP address:
+
+```
+http://10.0.91.183:8888/lab?token=1e41eaf84a91a47b00d1c0c2ed3a43632c3999f79d36803c
+```
+
+### Accessing JupyterLab from a Browser
+
+On your x86 host machine, open a browser, in the address bar, paste the updated URL as
+
+```
+http://10.0.91.183:8888/lab?token=1e41eaf84a91a47b00d1c0c2ed3a43632c3999f79d36803c
+```
+
+You should see the JupyterLab interface:
+
+![](./static/jupyter3.png)
+
+现在你可以使用 Notebook 来交互式执行和调试代码，也可以打开 Terminal，Terminal 默认激活了虚拟环境，因此你可以 pip 安装想要的包，随后刷新环境以使用它。
+
+You can now:
+
+- Use **Notebooks** for interactive code execution and debugging.
+- Open **Terminal** sessions. The terminal automatically activates the virtual environment, allowing you to install additional packages via `pip`. Restart the kernel to apply newly installed packages.
+
+For more advanced usage, refer to the official documentation:
+[Jupyter Documentation](https://docs.jupyter.org/en/latest/)
+
+### Using JupyterLab with VS Code
+
+1. Open VS Code and open an empty folder, then create a new file named `demo.ipynb`.
+
+   ![](./static/vscode1.png)
+
+2. Click **Select Kernel** → **Existing Jupyter Server**, and paste the previously saved JupyterLab URL.
+
+   ![](./static/vscode-remote2.png)
+
+3. Press **Enter**
+
+   ![](./static/vscode-remote3.png)
+
+4. Press **Enter** again
+
+   ![](./static/vscode-remote4.png)
+
+5. Click to select **Python 3 (ipykernel)**
+
+Once configured, any newly created notebook can directly reuse this kernel without additional setup.
+
+You may run sample code to verify that everything is working correctly:
+
+![](./static/vscode-remote5.png)
+
+When new packages are installed in the virtual environment, simply restart the kernel to refresh the environment.
+
 ## Using GPIO from Python
 
 We adapted the gpiozero library for the following devices
 
-* BPI-F3
-* MUSE Book
-* MUSE Pi
-* MUSE Card
+- BPI-F3
+- MUSE Book
+- MUSE Pi
+- MUSE Card
 
 With this library, you can easily control GPIO devices using Python scripts and the full documentation of the library is located at [gpiozero.readthedocs.io](https://gpiozero.readthedocs.io/)。
 
@@ -374,12 +526,30 @@ Let's take a 26-pin SpacemiT development board, SpacemiT MUSE-Pi, as an example 
 
 ![alt text](static/MUSE-Card-GPIO.png)
 
-### Install and configure the environment
+#### MUSE Pi Pro
 
-Run the following command to install the library:
+![](./static/MUSE-Pi-Pro-GPIO.png)
+
+### Install and Configure the Environment
+
+Follow the steps below to install the required libraries
+
+**System environment:**
 
 ```shell
 sudo apt install python3-gpiozero
+```
+
+**Virtual environment:**
+
+```shell
+pip install --index-url https://git.spacemit.com/api/v4/projects/33/packages/pypi/simple gpiozero
+```
+
+**Grant Device Permissions**
+
+```shell
+sudo chmod a+rw /dev/gpiochip0
 ```
 
 Run pinout from the command line, and you should see the following output:

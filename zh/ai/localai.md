@@ -111,7 +111,7 @@ sudo ln -s /usr/lib/riscv64-linux-gnu/libabsl_synchronization.so /usr/lib/riscv6
 
 ### 添加RISCV加速的ASR推理后端
 
-项目代码位于 backend/cpp/spacemit-asr-cpp，可通过下面的命令进行部署和重启local-ai
+项目代码位于 `backend/cpp/spacemit-asr-cpp`，可通过下面的命令进行部署和重启`local-ai`
 
 ```bash
 cd backend/cpp/spacemit-asr-cpp
@@ -133,7 +133,7 @@ curl -X POST http://localhost:8080/v1/audio/transcriptions \
 
 ### 添加C++版本的TTS推理后端
 
-项目代码位于 backend/cpp/matcha-tts-cpp，可通过下面的命令进行部署和重启local-ai
+项目代码位于 `backend/cpp/matcha-tts-cpp`，可通过下面的命令进行部署和重启`local-ai`
 
 ```bash
 cd backend/cpp/matcha-tts-cpp

@@ -38,7 +38,40 @@ locale  # verify settings
 Add the ROS2 `apt` repository to your system:
 
 ```shell
-sudo sed -i '/^Suites:/s/$/ noble-ros/' /etc/apt/sources.list.d/bianbu.sources
+grep -q '^Suites:.*\bnoble-ros\b' /etc/apt/sources.list.d/bianbu.sources || sudo sed -i '0,/^Suites:/s//& noble-ros/' /etc/apt/sources.list.d/bianbu.sources
+```
+
+**Configure APT Sources** as below:
+
+```shell
+if ! dpkg -s bianbu-desktop-lite >/dev/null 2>&1; then
+  echo "bianbu-desktop-lite not installed, proceeding..."
+
+  if [ ! -f /etc/apt/preferences.d/noble-ros.pref ]; then
+    sudo tee /etc/apt/preferences.d/noble-ros.pref > /dev/null <<EOF
+Package: src:opencv
+Pin: release o=Spacemit, n=noble-ros
+Pin-Priority: 50
+
+Package: src:qtbase-opensource-src
+Pin: release o=Spacemit, n=noble-ros
+Pin-Priority: 50
+
+Package: src:qtbase-opensource-src-gles
+Pin: release o=Spacemit, n=noble-ros
+Pin-Priority: 50
+
+Package: src:pyqt5
+Pin: release o=Spacemit, n=noble-ros
+Pin-Priority: 50
+EOF
+  else
+    echo "/etc/apt/preferences.d/noble-ros.pref already exists, skipping..."
+  fi
+
+else
+  echo "bianbu-desktop-lite is already installed, skipping preference setup."
+fi
 ```
 
 #### Install Development Tools (Recommended)
@@ -206,7 +239,40 @@ locale  # verify settings
 Add the ROS2 `apt` repository to your system:
 
 ```shell
-sudo sed -i '/^Suites:/s/$/ noble-ros/' /etc/apt/sources.list.d/bianbu.sources
+grep -q '^Suites:.*\bnoble-ros\b' /etc/apt/sources.list.d/bianbu.sources || sudo sed -i '0,/^Suites:/s//& noble-ros/' /etc/apt/sources.list.d/bianbu.sources
+```
+
+**Configure APT Sources** as below:
+
+```shell
+if ! dpkg -s bianbu-desktop-lite >/dev/null 2>&1; then
+  echo "bianbu-desktop-lite not installed, proceeding..."
+
+  if [ ! -f /etc/apt/preferences.d/noble-ros.pref ]; then
+    sudo tee /etc/apt/preferences.d/noble-ros.pref > /dev/null <<EOF
+Package: src:opencv
+Pin: release o=Spacemit, n=noble-ros
+Pin-Priority: 50
+
+Package: src:qtbase-opensource-src
+Pin: release o=Spacemit, n=noble-ros
+Pin-Priority: 50
+
+Package: src:qtbase-opensource-src-gles
+Pin: release o=Spacemit, n=noble-ros
+Pin-Priority: 50
+
+Package: src:pyqt5
+Pin: release o=Spacemit, n=noble-ros
+Pin-Priority: 50
+EOF
+  else
+    echo "/etc/apt/preferences.d/noble-ros.pref already exists, skipping..."
+  fi
+
+else
+  echo "bianbu-desktop-lite is already installed, skipping preference setup."
+fi
 ```
 
 #### Install Development Tools (Optional)

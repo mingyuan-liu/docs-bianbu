@@ -101,13 +101,13 @@ Before creating the UEFI system image, it is necessary to create the UEFI firmwa
 
 After the UEFI firmware creation is completed, it is necessary to install and configure the GRUB bootloader. GRUB is a multi-boot program that takes over the system boot process after the UEFI firmware initializes the hardware. The UEFI firmware will look for and load the GRUB bootloader stored in the ESP (EFI System Partition). Then, GRUB will load the Linux kernel, device tree, and initramfs according to the configuration file. Therefore, it is necessary to create the ESP partition, install GRUB to the ESP partition, and configure GRUB to correctly identify and boot Bianbu system.
 
-1. Environment Preparation
+1. **Environment Preparation**
 
    Download and flash the Bianbu 2.2 image to the MUSE Pi Pro. It is recommended to use the [Bianbu GNOME Desktop 2.2 firmware version](https://archive.spacemit.com/image/k1/version/bianbu/v2.2/bianbu-24.04-desktop-k1-v2.2-release-20250430190125.zip)，the method for obtaining the image and the usage of the Titan Flasher tool can be found at [Image](https://bianbu.spacemit.com/en/image/).
-   
-   After flashing the system, ensure that the system can connect to the network and that the network connection is normal, as the process of creating partition files requires downloading software packages.   
 
-2. Create ESP Partition File
+   After flashing the system, ensure that the system can connect to the network and that the network connection is normal, as the process of creating partition files requires downloading software packages.
+
+2. **Create ESP Partition File**
 
    After entering the Bianbu 2.2 system, execute the following commands to create the ESP partition file:
 
@@ -124,27 +124,30 @@ After the UEFI firmware creation is completed, it is necessary to install and co
    sudo umount /boot/efi
    sudo fsck.vfat -a ~/efi.img
    ```
+
    The created `efi.img` file is the ESP partition file required. Please transfer this file to the ROOTFS file system workspace, for example using scp for remote transfer.
 
    Here is a sample transfer command:
-   
-   >First, execute the following commands on the Muse Pi Pro to obtain the username used to create the ESP partition and the system's IP address.
-   >
-   > ```shell
-   >whoami
-   ># Assume the output is: bianbu
-   >ip a | grep 'inet ' | grep -v '127.0.0.1' | awk '{print $2}' | cut -d'/' -f1
-   ># Assume the output is: 192.168.10.156
-   >```
-   >
-   >Then switch to the host environment (note that this is the host environment, not inside the virtual machine) and use the scp command to remotely transfer the efi.img file to the working directory.
-   >
-   >```shell
-   >scp username@ip_addr:~/efi.img ~/bianbu-workspace
-   ># For example: scp bianbu@192.168.10.156:~/efi.img ~/bianbu-workspace
-   >docker cp ~/bianbu-workspace/efi.img build-bianbu-rootfs:/mnt/image-workspace/
-   ># This way, the efi.img file has been transferred to the working directory where the system image is being created
-   >```
+
+   - First, execute the following commands on the Muse Pi Pro to obtain the username used to create the ESP partition and the system's IP address.
+
+     ```shell
+     whoami
+     # Assume the output is: bianbu
+     ip a | grep 'inet ' | grep -v '127.0.0.1' | awk '{print $2}' | cut -d'/' -f1
+     # Assume the output is: 192.168.10.156
+     ```
+
+   - Then switch to the host environment (note that this is the host environment, not inside the virtual machine) and use the scp command to remotely transfer the efi.img file to the working directory.
+
+     ```shell
+     scp username@ip_addr:~/efi.img ~/bianbu-workspace
+     # For example: scp bianbu@192.168.10.156:~/efi.img ~/bianbu-workspace
+     docker cp ~/bianbu-workspace/efi.img build-bianbu-rootfs:/mnt/image-workspace/
+     # This way, the efi.img file has been transferred to the working directory where the system image is being created
+     ```
+
+3. **Get the UUIDs of the bootfs and rootfs**
 
    In addition, record the UUIDs of the bootfs and rootfs disk partitions from the Bianbu 2.2 system. When the UEFI system image is built later, it is a must to assign the same UUIDs to rootfs and bootfs. This is necessary because the ESP partition file and system configuration were extracted from the previously flashed Bianbu system. If the new UEFI image uses different UUIDs, the copied configuration files will not correctly identify the new partitions, causing the system to fail to boot.
 
@@ -158,10 +161,10 @@ After the UEFI firmware creation is completed, it is necessary to install and co
    # Assume the output is: 26d39279-a9ae-485e-8467-dda899d9c3bf
    ```
 
-3. GRUB Configuration
+4. **GRUB Configuration**
 
-   First, synchronize the obtained UUIDs into environment variables: the UUID for rootfs corresponds to UUID_ROOTFS, and the UUID for bootfs corresponds to UUID_BOOTFS.
-   
+   - First, synchronize the obtained UUIDs into environment variables: the UUID for rootfs corresponds to UUID_ROOTFS, and the UUID for bootfs corresponds to UUID_BOOTFS.
+
    ```shell
    # Replace 'xxxxx' with the corresponding UUID.
    export UUID_ROOTFS=xxxxx
@@ -171,7 +174,7 @@ After the UEFI firmware creation is completed, it is necessary to install and co
    # export UUID_BOOTFS=26d39279-a9ae-485e-8467-dda899d9c3bf
    ```
 
-   After the ESP partition file is ready, install and configure GRUB inside rootfs.
+   - After the ESP partition file is ready, install and configure GRUB inside rootfs.
 
    ```shell
    cd $ROOTFS_WORKSPACE
@@ -389,7 +392,7 @@ After the UEFI firmware creation is completed, it is necessary to install and co
    EOF
    ```
 
-   Edit the fstab configuration file to enable automatic mounting of the ESP partition.
+   - Edit the fstab configuration file to enable automatic mounting of the ESP partition.
 
    ```shell
    cat >rootfs/etc/fstab <<EOF
