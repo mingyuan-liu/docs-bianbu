@@ -1,6 +1,6 @@
 # Bianbu
 
-- [简介](intro.md)
+- [简介](root_overview.md)
 - [镜像](image.md)
 - [更新说明](./release_notes/index.md)
 - [用户指南](./user_guide/index.md)
