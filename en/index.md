@@ -1,6 +1,6 @@
 # Bianbu
 
-- [Introduction](intro.md)
+- [Introduction](root_overview.md)
 - [Images](image.md)
 - [Release Notes](./release_notes/index.md)
 - [Bianbu User Guide](./user_guide/index.md)
