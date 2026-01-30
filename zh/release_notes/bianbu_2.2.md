@@ -23,17 +23,17 @@ Signed-By: /usr/share/keyrings/bianbu-archive-keyring.gpg
 
 **发布日期：** 2025-8-16
 
-对应的 **BSP** 版本：[v2.2.7](https://sdk.spacemit.com/release_notes/bl-v2.2.y)
+对应的 **BSP** 版本：[v2.2.7](https://www.spacemit.com/community/document/info?lang=zh&nodepath=software/SDK/buildroot/release_notes/bl-v2.2.y.md)
 
-### Bianbu OS基础组件主要更新
+### Bianbu OS 基础组件主要更新
 
-- 支持Lichee PI 3A开发板
+- 支持 Lichee PI 3A 开发板
 
 ## V2.2
 
 **发布日期：** 2025-5-9
 
-对应的 **BSP** 版本：[v2.2](https://sdk.spacemit.com/release_notes/bl-v2.2.y)
+对应的 **BSP** 版本：[v2.2](https://www.spacemit.com/community/document/info?lang=zh&nodepath=software/SDK/buildroot/release_notes/bl-v2.2.y.md)
 
 ### LXQt桌面组件主要更新
 
