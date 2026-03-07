@@ -11,5 +11,5 @@ Bianbu 支持运行主流的推理框架，并深度适配了 ONNX Runtime，可
 - [llama.cpp](llama-cpp.md)
 - [Ollama](ollama.md)
 - [Open-WebUI](openwebui.md)
-- [SpacemiT AI Demo 示例库](spacemit-demo.md)
+- [Model Zoo](model-zoo.md)
 - [LocalAI](localai.md)
