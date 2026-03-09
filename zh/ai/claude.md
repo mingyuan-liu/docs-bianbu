@@ -1,38 +1,52 @@
+<!--
+ * Copyright 2022-2023 SPACEMIT. All rights reserved.
+ * Use of this source code is governed by a BSD-style license
+ * that can be found in the LICENSE file.
+ * 
+ * @Author: David(qiang.fu@spacemit.com)
+ * @Date: 2026-03-09 14:26:58
+ * @LastEditTime: 2026-03-09 16:26:22
+ * @FilePath: \doc\docs-bianbu\zh\ai\claude.md
+ * @Description: 
+-->
 ---
 sidebar_position: 6
 ---
 
 # Claude Code
 
-**Claude Code** 是一个用于智能体编程的命令行工具,由 Anthropic 开发。它允许开发者通过命令行界面与 Claude AI 进行交互,实现代码生成、调试、重构等智能编程辅助功能。
+**Claude Code** 是一个用于智能体编程的命令行工具,由**Anthropic**开发。它允许开发者通过命令行界面与 Claude AI 进行交互,实现代码生成、调试、重构等智能编程辅助功能。
 
-## 安装
+## 1. 安装
 
-### 安装 npm
+### 1.1. 安装 npm
 
 ```shell
 sudo apt install npm
 ```
 
-### 安装 Claude Code
+### 1.2. 安装 Claude Code
 
-```shell
+```bash
 sudo npm i --registry=http://nexus.bianbu.xyz/repository/npmproxy/ -g @anthropic-ai/claude-code
 ```
 
 验证安装:
 
-```shell
+```bash
 claude --version
 ```
 
-## 配置
+输出版本号表示安装成功：
+![](../static/claude-version.png)
 
-### 设置环境变量
+## 2. 配置
+
+### 2.1. 设置环境变量
 
 **注意**: 创建 API Token 时,需要在分组选择中选择 **claude** 分组。
 
-```shell
+```bash
 cat >> ~/.bashrc << 'EOF'
 export ANTHROPIC_BASE_URL="供应商URL"
 export ANTHROPIC_AUTH_TOKEN="生成的API_KEY"
@@ -40,13 +54,13 @@ EOF
 source ~/.bashrc
 ```
 
-### 配置 API Key 自动批准
+### 2.2. 配置 API Key 自动批准
 
-```shell
+```bash
 (cat ~/.claude.json 2>/dev/null || echo 'null') | jq --arg key "${ANTHROPIC_API_KEY: -20}" '(. // {}) | .customApiKeyResponses.approved |= ([.[]?, $key] | unique)' > ~/.claude.json.tmp && mv ~/.claude.json.tmp ~/.claude.json
 ```
 
-## 使用
+## 3. 使用
 
 启动 Claude Code 交互式会话:
 
@@ -54,8 +68,14 @@ source ~/.bashrc
 claude
 ```
 
-切换模型以及使用:
+启动界面如下:
 ![](../static/claude-use.png)
+
+Say Hello：
+![](../static/claude-hello.png)
+
+执行/model切换模型：
+![](../static/claude-model.png)
 
 
 在交互式会话中,您可以:
@@ -65,3 +85,20 @@ claude
 - 获取技术建议和最佳实践
 
 输入 `/exit` 退出会话。
+
+## 4. 举一个例子
+
+- 输入“帮我写一个程序，调用onnxruntime，下载并使用resnet50模型进行分类，显示分类结果”，Claude开始运行
+![](../static/claude-demo1.png)
+
+- Claude完成了编码，并提供了操作步骤：
+![](../static/claude-demo2.png)
+
+- 执行“run it”，出现异常，Claude自行修复异常中
+![](../static/claude-demo3.png)
+
+- Claude修复完异常后，程序可以正常执行
+![](../static/claude-demo4.png)
+
+- 手动执行程序，可正常执行
+![](../static/claude-demo5.png)

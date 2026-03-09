@@ -20,7 +20,7 @@ Bianbu 支持运行主流的推理框架，并深度适配了 ONNX Runtime，可
 ## 3. Agent
 
 - [openClaw](openclaw.md)
-- [claude](claude.md)
+- [Claude Code](claude.md)
 - [LocalAI](localai.md)
 - [Open-WebUI](openwebui.md)
 
