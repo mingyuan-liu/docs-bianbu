@@ -30,6 +30,8 @@ claude --version
 
 ### Set Environment Variables
 
+**Note**: When creating an API Token, you need to select the **claude** group in the group selection.
+
 ```shell
 cat >> ~/.bashrc << 'EOF'
 export ANTHROPIC_BASE_URL="provider_url"

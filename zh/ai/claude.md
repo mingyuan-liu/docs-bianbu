@@ -30,6 +30,8 @@ claude --version
 
 ### 设置环境变量
 
+**注意**: 创建 API Token 时,需要在分组选择中选择 **claude** 分组。
+
 ```shell
 cat >> ~/.bashrc << 'EOF'
 export ANTHROPIC_BASE_URL="供应商URL"
