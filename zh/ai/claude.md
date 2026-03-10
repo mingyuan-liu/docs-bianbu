@@ -5,7 +5,7 @@
  * 
  * @Author: David(qiang.fu@spacemit.com)
  * @Date: 2026-03-09 14:26:58
- * @LastEditTime: 2026-03-10 10:21:21
+ * @LastEditTime: 2026-03-10 18:45:43
  * @FilePath: \doc\docs-bianbu\zh\ai\claude.md
  * @Description: 
 -->
@@ -102,3 +102,43 @@ Say Hello：
 
 - 手动执行程序，可正常执行
 ![](../static/claude-demo5.png)
+
+## 5. 对接端侧AI(简单尝试)
+
+### 5.1. 设置环境变量
+
+```bash
+cat >> ~/.bashrc << 'EOF'
+export ANTHROPIC_BASE_URL="http://localhost:8080"
+export ANTHROPIC_AUTH_TOKEN="llama"
+EOF
+source ~/.bashrc
+```
+
+### 5.2. 配置 API Key 自动批准
+
+```bash
+(cat ~/.claude.json 2>/dev/null || echo 'null') | jq --arg key "${ANTHROPIC_API_KEY: -20}" '(. // {}) | .customApiKeyResponses.approved |= ([.[]?, $key] | unique)' > ~/.claude.json.tmp && mv ~/.claude.json.tmp ~/.claude.json
+```
+### 5.3. 拉起llama-server
+
+```bash
+llama-server -m Qwen2.5-0.5B-Instruct-Q4_0.gguf -t 8 --host 127.0.0.1 --port 8080 --ctx-size 153600 --n-gpu-layers 0 --batch-size 512 --metrics --no-mmap
+```
+
+### 5.4. 运行claude
+
+启动claude并hello：
+
+```bash
+claude --model qwen2.5:0.5b
+```
+
+![](../static/claude-llama1.png)
+
+hello的耗时特别长，prefill了17000+tokens
+
+![](../static/claude-llama2.png)
+
+后面写算法的耗时明显变短，但准确度欠佳
+![](../static/claude-llama3.png)
