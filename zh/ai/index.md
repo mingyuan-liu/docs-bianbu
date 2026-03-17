@@ -5,7 +5,7 @@
  * 
  * @Author: David(qiang.fu@spacemit.com)
  * @Date: 2026-03-17 11:27:55
- * @LastEditTime: 2026-03-17 17:38:28
+ * @LastEditTime: 2026-03-17 19:32:31
  * @FilePath: \doc\docs-bianbu\zh\ai\index.md
  * @Description: 
 -->
@@ -65,6 +65,7 @@ Bianbu 支持运行主流的推理框架，并深度适配了 ONNX Runtime，可
 - [LocalAI](localai.md)
 - [Open-WebUI](openwebui.md)
 - [langchain](langchain.md)
+- [LlamaIndex](llamaindex.md)
 
 
 ## 4. Application
