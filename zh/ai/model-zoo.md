@@ -90,14 +90,14 @@ cd llm && mm
 
 ```bash
 # 下载所有 vision 示例模型（会放到 ~/.cache/models/vision/ 下面）
-bash components/model_zoo/vision/scripts/download_all_models.sh
+bash vision/scripts/download_all_models.sh
 ```
 
 **步骤2：下载资源文件（图片/视频）**
 
 ```bash
 # 下载示例用图片/视频资源（会放到 ~/.cache/assets/ 下面）
-bash components/model_zoo/vision/scripts/download_assets.sh
+bash vision/scripts/download_assets.sh
 ```
 
 默认目录：
@@ -107,39 +107,39 @@ bash components/model_zoo/vision/scripts/download_assets.sh
 
 **步骤3：运行示例**
 
-以下为 `components/model_zoo/vision/examples/` 下**全部示例**的运行命令（C++，执行过 `m` 后在SDK根目录可直接运行）：
+以下为 `vision/examples/` 下**全部示例**的运行命令（C++，执行过 `m` 后在SDK根目录可直接运行）：
 
 ```bash
 # 人脸识别（相似度）
-arcface components/model_zoo/vision/examples/arcface/config/arcface.yaml
+arcface vision/examples/arcface/config/arcface.yaml
 
 # 人脸检测
-yolov5-face components/model_zoo/vision/examples/yolov5-face/config/yolov5-face.yaml
+yolov5-face vision/examples/yolov5-face/config/yolov5-face.yaml
 
 # 手势检测
-yolov5_gesture components/model_zoo/vision/examples/yolov5_gesture/config/yolov5_gesture.yaml
+yolov5_gesture vision/examples/yolov5_gesture/config/yolov5_gesture.yaml
 
 # 目标检测
-yolov8 components/model_zoo/vision/examples/yolov8/config/yolov8.yaml
-yolov11 components/model_zoo/vision/examples/yolov11/config/yolov11.yaml
+yolov8 vision/examples/yolov8/config/yolov8.yaml
+yolov11 vision/examples/yolov11/config/yolov11.yaml
 
 # 姿态估计
-yolov8_pose components/model_zoo/vision/examples/yolov8_pose/config/yolov8_pose.yaml
+yolov8_pose vision/examples/yolov8_pose/config/yolov8_pose.yaml
 
 # 实例分割
-yolov8_seg components/model_zoo/vision/examples/yolov8_seg/config/yolov8_seg.yaml
+yolov8_seg vision/examples/yolov8_seg/config/yolov8_seg.yaml
 
 # 图像分类 / 情绪识别
-resnet components/model_zoo/vision/examples/resnet/config/resnet50.yaml
-emotion components/model_zoo/vision/examples/emotion/config/emotion.yaml
+resnet vision/examples/resnet/config/resnet50.yaml
+emotion vision/examples/emotion/config/emotion.yaml
 
 # 多目标跟踪（视频/摄像头）
 # 以下两个示例是实时画面显示目标跟踪，需要接上屏幕，否则会报错
-bytetrack components/model_zoo/vision/examples/bytetrack/config/bytetrack.yaml
-ocsort components/model_zoo/vision/examples/ocsort/config/ocsort.yaml
+bytetrack vision/examples/bytetrack/config/bytetrack.yaml
+ocsort vision/examples/ocsort/config/ocsort.yaml
 ```
 
-每个示例的可选参数（如 `--image`、`--video`、`--use-camera`、`--output`、阈值等）请参考对应目录的 README（`components/model_zoo/vision/examples/*/README.md`），或参阅 [model-zoo-vision README](https://github.com/spacemit-com/model-zoo-vision/blob/main/README.md)。
+每个示例的可选参数（如 `--image`、`--video`、`--use-camera`、`--output`、阈值等）请参考对应目录的 README（`vision/examples/*/README.md`），或参阅 [model-zoo-vision README](https://github.com/spacemit-com/model-zoo-vision/blob/main/README.md)。
 
 ### 3.2 ASR
 
